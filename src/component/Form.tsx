@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { FormProps } from "antd";
-import { Button, DatePicker, Form, Input, Select, TimePicker } from "antd";
+import { Button, DatePicker, Form, Input, TimePicker } from "antd";
 import { toast } from "sonner";
 const SubmitForm = () => {
   const onFinish: FormProps<any>["onFinish"] = (values) => {
@@ -30,9 +30,9 @@ const SubmitForm = () => {
           placeholder="enter your contact number"
         />
       </Form.Item>
-      <Form.Item label="Select Branch" name="branch">
+      {/* <Form.Item label="Select Branch" name="branch">
         <Select size="large" placeholder="select branch" />
-      </Form.Item>
+      </Form.Item> */}
       <Form.Item
         label="Select Date"
         name="date"
