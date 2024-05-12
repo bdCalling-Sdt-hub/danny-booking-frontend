@@ -10,8 +10,8 @@ function App() {
         className="bg-cover bg-center min-h-screen lg:py-0 py-4"
         style={{ backgroundImage: `url(${bg})` }}
       >
-        <div className="flex items-center justify-center lg:h-[90vh]  ">
-          <div className="bg-[#10B981] p-4  sm:w-[500px]  rounded ">
+        <div className="container mx-auto flex items-center justify-center lg:h-[90vh] h-full">
+          <div className="bg-[#10B981] p-4 w-full  mx-2 lg:mx-auto max-w-md rounded">
             <h5 className="text-center text-gray text-lg font-bold">
               Submit Your Booking Information
             </h5>
@@ -19,7 +19,7 @@ function App() {
           </div>
         </div>
       </section>
-      <section className="bg-[#91DFC5]">
+      <section className="bg-[#91DFC5] px-2 lg:px-0">
         <Footer />
       </section>
     </>
