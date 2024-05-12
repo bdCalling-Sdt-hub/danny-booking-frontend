@@ -42,13 +42,15 @@ const SubmitForm = () => {
       </Form.Item>
       <Form.Item label="Select Time" name="time">
         <TimePicker
+          minuteStep={15}
+          format="HH:mm"
           className="w-full"
           size="large"
           placeholder="select your time"
         />
       </Form.Item>
       <Form.Item label="Number of Persons" name="person">
-        <Input size="large" placeholder="number of persons" />
+        <Input size="large" placeholder="number of persons" type="number" />
       </Form.Item>
       <Button
         className="w-full bg-[#F59533] border-0 font-bold text-md"

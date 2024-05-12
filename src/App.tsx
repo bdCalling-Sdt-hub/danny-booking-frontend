@@ -11,7 +11,7 @@ function App() {
         style={{ backgroundImage: `url(${bg})` }}
       >
         <div className="container mx-auto flex items-center justify-center lg:h-[90vh] h-full">
-          <div className="bg-[#10B981] p-4 w-full  mx-2 lg:mx-auto max-w-md rounded">
+          <div className="bg-[#0B835C] p-4 w-full  mx-2 lg:mx-auto max-w-md rounded">
             <h5 className="text-center text-gray text-lg font-bold">
               Submit Your Booking Information
             </h5>
