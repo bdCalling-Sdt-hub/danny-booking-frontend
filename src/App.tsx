@@ -1,10 +1,14 @@
 import { Col, Row } from "antd";
+import { useLocation } from "react-router-dom";
 import bg from "./assets/bg.jpg";
 import Footer from "./component/Footer";
 import SubmitForm from "./component/Form";
 import Header from "./component/Header";
 import OpeningCard from "./component/OpeningCard";
 function App() {
+  const { search } = useLocation();
+  const branch = new URLSearchParams(search).get("branch");
+  console.log(branch);
   return (
     <>
       <Header />
@@ -12,9 +16,9 @@ function App() {
         className="bg-cover bg-center min-h-screen lg:py-0 py-4 flex justify-center items-center"
         style={{ backgroundImage: `url(${bg})` }}
       >
-        <div className="container mx-auto">
-          <Row justify="center" gutter={[24, 16]}>
-            <Col lg={8} md={12} sm={24}>
+        <div className="container mx-auto px-2 lg:px-0">
+          <Row justify="center" gutter={[16, 16]}>
+            <Col lg={8} md={12} sm={24} xs={24}>
               <div className="bg-[#0B835C] p-4 w-full rounded text-center text-white">
                 <h5 className="text-xl font-bold">
                   Submit Your Booking Information
@@ -22,7 +26,7 @@ function App() {
                 <SubmitForm />
               </div>
             </Col>
-            <Col lg={12} md={12} sm={24}>
+            <Col lg={12} md={12} sm={24} xs={24}>
               <OpeningCard />
             </Col>
           </Row>

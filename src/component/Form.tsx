@@ -10,7 +10,7 @@ const SubmitForm = () => {
   return (
     <Form onFinish={onFinish} layout="vertical">
       <Row gutter={[16, 9]}>
-        <Col lg={12} md={12} sm={24}>
+        <Col lg={12} md={12} sm={24} xs={24}>
           <Form.Item
             name="name"
             rules={[{ required: true, message: "Name is required" }]}
@@ -19,7 +19,7 @@ const SubmitForm = () => {
             <Input size="large" type="text" placeholder="Enter your name" />
           </Form.Item>
         </Col>
-        <Col lg={12} md={12} sm={24}>
+        <Col lg={12} md={12} sm={24} xs={24}>
           <Form.Item
             name="email"
             rules={[{ required: true, message: "Email is required" }]}
@@ -28,7 +28,7 @@ const SubmitForm = () => {
             <Input size="large" type="text" placeholder="Enter your email" />
           </Form.Item>
         </Col>
-        <Col lg={12} md={12} sm={24}>
+        <Col lg={12} md={12} sm={24} xs={24}>
           <Form.Item label="Contact Number (optional)" name="number">
             <Input
               size="large"
@@ -37,7 +37,7 @@ const SubmitForm = () => {
             />
           </Form.Item>
         </Col>
-        <Col lg={12} md={12} sm={24}>
+        <Col lg={12} md={12} sm={24} xs={24}>
           <Form.Item
             label="Select Date"
             name="date"
@@ -50,7 +50,7 @@ const SubmitForm = () => {
             />
           </Form.Item>
         </Col>
-        <Col lg={12} md={12} sm={24}>
+        <Col lg={12} md={12} sm={24} xs={24}>
           <Form.Item label="Select Time" name="time">
             <TimePicker
               minuteStep={15}
@@ -61,7 +61,7 @@ const SubmitForm = () => {
             />
           </Form.Item>
         </Col>
-        <Col lg={12} md={12} sm={24}>
+        <Col lg={12} md={12} sm={24} xs={24}>
           <Form.Item label="Number of Persons" name="person">
             <Input size="large" placeholder="Number of persons" type="Number" />
           </Form.Item>
