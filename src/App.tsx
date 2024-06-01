@@ -1,14 +1,15 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Col, Row } from "antd";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import bg from "./assets/bg.jpg";
 import Footer from "./component/Footer";
 import SubmitForm from "./component/Form";
 import Header from "./component/Header";
 import OpeningCard from "./component/OpeningCard";
+import { useGetBranchQuery } from "./redux/features/branch/branchApi";
 function App() {
-  const { search } = useLocation();
-  const branch = new URLSearchParams(search).get("branch");
-  console.log(branch);
+  const { id } = useParams();
+  const { data, isLoading } = useGetBranchQuery(id);
   return (
     <>
       <Header />
@@ -23,11 +24,11 @@ function App() {
                 <h5 className="text-xl font-bold">
                   Submit Your Booking Information
                 </h5>
-                <SubmitForm />
+                <SubmitForm branch={id!} />
               </div>
             </Col>
             <Col lg={12} md={12} sm={24} xs={24}>
-              <OpeningCard />
+              <OpeningCard branchData={data?.data} />
             </Col>
           </Row>
         </div>
