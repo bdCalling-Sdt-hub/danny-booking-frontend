@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+import Skeleton from "./Skeleton/Skeleton";
+
 const OpeningCard = ({ branchData, isLoading, isFetching }: any) => {
   const data = branchData?.length > 0 ? branchData[0] : {};
 
@@ -12,23 +14,27 @@ const OpeningCard = ({ branchData, isLoading, isFetching }: any) => {
         Discover our opening hours and reserve your table now.
       </p>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        {data?.schedule?.map((dayData: any) => (
-          <div
-            className="flex items-center justify-around my-1 p-2 border border-gray-300 rounded-lg"
-            key={dayData.day}
-          >
-            <h5 className="text-lg">{dayData.day}</h5>
-            {dayData.isClosed ? (
-              <p className="text-lg text-yellow-400">Closed</p>
-            ) : (
-              <div className="flex gap-x-4 text-lg">
-                <p>{dayData.openTime}</p>
-                <p>-</p>
-                <p>{dayData.closeTime}</p>
-              </div>
-            )}
-          </div>
-        ))}
+        {isLoading || isFetching ? (
+          <Skeleton />
+        ) : (
+          data?.schedule?.map((dayData: any) => (
+            <div
+              className="flex items-center justify-around my-1 p-2 border border-gray-300 rounded-lg"
+              key={dayData.day}
+            >
+              <h5 className="text-lg">{dayData.day}</h5>
+              {dayData.isClosed ? (
+                <p className="text-lg text-yellow-400">Closed</p>
+              ) : (
+                <div className="flex gap-x-4 text-lg">
+                  <p>{dayData.openTime}</p>
+                  <p>-</p>
+                  <p>{dayData.closeTime}</p>
+                </div>
+              )}
+            </div>
+          ))
+        )}
       </div>
     </div>
   );
