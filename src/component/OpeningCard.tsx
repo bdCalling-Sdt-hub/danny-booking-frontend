@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-const OpeningCard = ({ branchData }: any) => {
+const OpeningCard = ({ branchData, isLoading, isFetching }: any) => {
   const data = branchData?.length > 0 ? branchData[0] : {};
 
   return (

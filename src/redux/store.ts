@@ -1,10 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { configureStore } from "@reduxjs/toolkit";
 import { baseApi } from "./api/baseApi";
+import branchSlice from "./features/branch/branchSlice";
 
 export const store = configureStore({
   reducer: {
     // Add the baseApi reducer to the store
+    branch: branchSlice,
     [baseApi.reducerPath]: baseApi.reducer,
   },
   // Add the middleware for baseApi

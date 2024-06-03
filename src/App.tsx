@@ -9,7 +9,7 @@ import OpeningCard from "./component/OpeningCard";
 import { useGetBranchQuery } from "./redux/features/branch/branchApi";
 function App() {
   const { id } = useParams();
-  const { data, isLoading } = useGetBranchQuery(id);
+  const { data, isLoading, isFetching } = useGetBranchQuery(id);
   return (
     <>
       <Header />
@@ -28,7 +28,11 @@ function App() {
               </div>
             </Col>
             <Col lg={12} md={12} sm={24} xs={24}>
-              <OpeningCard branchData={data?.data} />
+              <OpeningCard
+                branchData={data?.data}
+                isLoading={isLoading}
+                isFetching={isFetching}
+              />
             </Col>
           </Row>
         </div>

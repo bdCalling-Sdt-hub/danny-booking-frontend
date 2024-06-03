@@ -2,14 +2,38 @@
 import type { FormProps } from "antd";
 import { Button, Col, DatePicker, Form, Input, Row, TimePicker } from "antd";
 
+import { useForm } from "antd/es/form/Form";
 import dayjs from "dayjs";
+import { toast } from "sonner";
 import { useMakeReservationMutation } from "../redux/features/booking/bookingApi";
+import { useGetBranchQuery } from "../redux/features/branch/branchApi";
+import { setBranch } from "../redux/features/branch/branchSlice";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { getDisabledHours } from "../utils/timeDisable";
 import Loading from "./UI/Loading";
 const SubmitForm = ({ branch }: { branch: string }) => {
-  console.log(branch);
+  const { data: BData } = useGetBranchQuery(branch);
+  const dispatch = useAppDispatch();
+  const branchTime = useAppSelector((state) => state.branch.branch);
+
+  const handleDateChange = (date: any) => {
+    dispatch(
+      setBranch({
+        day: dayjs(date).format("dddd"),
+        branch: BData?.data?.length > 0 ? BData?.data[0]?.schedule : {},
+      })
+    );
+  };
+  // Function to define disabled time
+  const disabledTime: any = () => ({
+    disabledHours: () =>
+      getDisabledHours(branchTime?.openTime ?? 0, branchTime?.closeTime ?? 22),
+    // disabledMinutes: (selectedHour: number) => getDisabledMinutes(selectedHour),
+  });
+
+  const [form] = useForm();
   const [postReservation, { isLoading }] = useMakeReservationMutation();
   const onFinish: FormProps<any>["onFinish"] = async (values) => {
-    console.log(values);
     const data = {
       ...values,
       date: dayjs(values?.date, "YYYY-MM-DD").format("YYYY-MM-DD"),
@@ -18,14 +42,17 @@ const SubmitForm = ({ branch }: { branch: string }) => {
     };
 
     try {
-      const res = await postReservation(data).unwrap();
-      console.log(res);
-    } catch (error) {
-      console.log(error);
+      await postReservation(data).unwrap();
+      toast.success("Your reservation has been successfully made", {
+        description: "Please check your email for a confirmation message.",
+      });
+      form.resetFields();
+    } catch (error: any) {
+      toast.error(error?.data?.message);
     }
   };
   return (
-    <Form onFinish={onFinish} layout="vertical">
+    <Form onFinish={onFinish} layout="vertical" form={form}>
       <Row gutter={[16, 9]}>
         <Col lg={12} md={12} sm={24} xs={24}>
           <Form.Item
@@ -61,6 +88,13 @@ const SubmitForm = ({ branch }: { branch: string }) => {
             rules={[{ required: true, message: "Date is required" }]}
           >
             <DatePicker
+              onChange={(e) => handleDateChange(e)}
+              disabledDate={(current) => {
+                return (
+                  dayjs().add(-1, "days") >= current ||
+                  dayjs().add(2, "month") <= current
+                );
+              }}
               name="date"
               className="w-full"
               size="large"
@@ -76,6 +110,7 @@ const SubmitForm = ({ branch }: { branch: string }) => {
               className="w-full"
               size="large"
               placeholder="Select your time"
+              disabledTime={disabledTime}
             />
           </Form.Item>
         </Col>
