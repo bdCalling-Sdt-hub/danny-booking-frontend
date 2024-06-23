@@ -2,6 +2,7 @@
 import { Button, Card, Modal } from "antd";
 import { useState } from "react";
 import { FaCalendarAlt, FaClock, FaUserFriends } from "react-icons/fa";
+import { GrStatusUnknown } from "react-icons/gr";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "sonner";
 import Loading from "../component/UI/Loading";
@@ -68,6 +69,12 @@ const Cancel = () => {
                   Guests: {Bdata?.data?.seats}
                 </div>
               </div>
+              <div className="flex items-center space-x-4">
+                <GrStatusUnknown className="text-3xl" />
+                <div className="text-xl font-semibold">
+                  Status: {Bdata?.data?.status}
+                </div>
+              </div>
             </div>
           </Card>
         </div>
@@ -80,7 +87,10 @@ const Cancel = () => {
               cannot be undone.
             </p>
             <Button
-              type="primary"
+              disabled={
+                Bdata?.data?.status === "canCelled" ||
+                Bdata?.data?.status === "closed"
+              }
               className="bg-yellow-500 border-none text-black font-semibold text-lg h-[40px] rounded"
               onClick={showCancelModal}
             >
