@@ -8,9 +8,27 @@ const bookingApi = baseApi.injectEndpoints({
         method: "POST",
         body: data,
       }),
-      invalidatesTags: ["branch"],
+      invalidatesTags: ["booking"],
+    }),
+    getSingleReservation: builder.query({
+      query: (id) => ({
+        url: `/booking/${id}`,
+        method: "GET",
+      }),
+      providesTags: ["booking"],
+    }),
+    canCelBooking: builder.mutation({
+      query: (id) => ({
+        url: `/booking/cancel/${id}`,
+        method: "PATCH",
+      }),
+      invalidatesTags: ["booking"],
     }),
   }),
 });
 
-export const { useMakeReservationMutation } = bookingApi;
+export const {
+  useMakeReservationMutation,
+  useGetSingleReservationQuery,
+  useCanCelBookingMutation,
+} = bookingApi;
