@@ -17,6 +17,7 @@ const bookingApi = baseApi.injectEndpoints({
       }),
       providesTags: ["booking"],
     }),
+
     canCelBooking: builder.mutation({
       query: (id) => ({
         url: `/booking/cancel/${id}`,
