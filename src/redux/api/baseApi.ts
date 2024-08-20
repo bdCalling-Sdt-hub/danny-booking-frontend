@@ -2,7 +2,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://143.198.197.69:5010/api/v1",
+  baseUrl: "https://api.mamnon.de/api/v1",
 });
 
 // Create baseApi
