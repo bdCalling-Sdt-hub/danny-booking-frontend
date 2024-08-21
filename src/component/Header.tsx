@@ -1,4 +1,4 @@
-import logo from "./../assets/logo.png";
+import logo from "./../assets/logo.svg";
 const Header = () => {
   return (
     <div className="bg-[#212629]  py-2 sticky top-0 z-10 ">
