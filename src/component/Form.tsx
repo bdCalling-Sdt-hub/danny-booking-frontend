@@ -13,6 +13,7 @@ import { getDisabledHours } from "../utils/timeDisable";
 import Loading from "./UI/Loading";
 const SubmitForm = ({ branch }: { branch: string }) => {
   const { data: BData } = useGetBranchQuery(branch);
+  console.log(BData);
   const dispatch = useAppDispatch();
   const branchTime = useAppSelector((state) => state.branch.branch);
 
